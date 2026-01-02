@@ -1,120 +1,108 @@
+/* --- GLOBAL RESET (Fixes overflow issues) --- */
+* {
+  box-sizing: border-box;
+  /* This ensures padding doesn't make elements wider than 100% */
+}
+
 :root {
-  --primary: #4f46e5;
-  /* Indigo 600 - very professional */
-  --primary-hover: #4338ca;
-  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  --card-bg: rgba(255, 255, 255, 0.95);
-  /* Slight transparency */
-  --text-main: #1f2937;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-main: #111827;
   --text-light: #6b7280;
   --border: #e5e7eb;
   --danger: #ef4444;
-  --success: #10b981;
-  --radius: 16px;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-gradient);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-color);
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* This centers everything vertically */
-  padding: 20px;
-}
-
-/* Main Layout Wrapper */
-.app-wrapper {
-  width: 100%;
-  max-width: 1000px;
-  display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  padding: 40px 20px;
+  overflow-x: hidden;
+  /* Prevents horizontal scrolling on entire page */
 }
 
+/* Header Section */
 .header-section {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  width: 100%;
 }
 
 .header-section h1 {
   margin: 0;
-  font-size: 2.2rem;
-  color: #111827;
-  letter-spacing: -0.5px;
+  font-size: 2rem;
+  color: #1f2937;
 }
 
 .header-section p {
   margin: 8px 0 0;
-  color: #4b5563;
-  font-size: 1rem;
+  color: #6b7280;
 }
 
-/* The Grid Container */
+/* Main Grid Layout */
 .container {
+  width: 100%;
+  max-width: 1100px;
   display: grid;
   grid-template-columns: 350px 1fr;
-  /* Fixed width for form, rest for list */
-  gap: 24px;
+  /* Desktop: Form (350px) | List (Rest) */
+  gap: 30px;
   align-items: start;
 }
 
-/* Glassy Cards */
+/* Card Styling */
 .card {
   background: var(--card-bg);
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  /* The "Premium" blur effect */
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  width: 100%;
+  /* Ensures card doesn't exceed container */
 }
 
 h2 {
   margin-top: 0;
   font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  color: #111827;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
-/* Form Elements */
+/* Forms */
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 label {
   display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 500;
   margin-bottom: 6px;
-  color: #374151;
 }
 
 input,
 textarea {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: all 0.2s;
-  background: #f9fafb;
-  /* Light gray bg */
-  color: #1f2937;
-  box-sizing: border-box;
-  /* Fixes width issues */
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+  /* Prevents zooming on iPhone when typing */
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
 }
 
-/* Fix for dark browser autofill */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #f9fafb inset !important;
+/* Fix browser autofill color */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
   -webkit-text-fill-color: #1f2937 !important;
 }
 
@@ -122,8 +110,7 @@ input:focus,
 textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background: white;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 textarea {
@@ -131,26 +118,30 @@ textarea {
   resize: vertical;
 }
 
+/* Buttons */
 .btn {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.2s;
   font-size: 1rem;
 }
 
 .btn-primary {
   background: var(--primary);
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
-  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
@@ -161,16 +152,15 @@ textarea {
 }
 
 .btn-secondary:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: #f9fafb;
 }
 
-/* List Styling */
+/* List Styles */
 .list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -178,10 +168,7 @@ textarea {
 .search-input {
   width: 100%;
   max-width: 250px;
-  padding: 10px 14px;
-  background: white;
-  border-radius: 20px;
-  border: 1px solid var(--border);
+  background: #f9fafb !important;
 }
 
 .contact-list {
@@ -190,131 +177,121 @@ textarea {
   margin: 0;
   max-height: 600px;
   overflow-y: auto;
-  padding-right: 5px;
-}
-
-/* Custom Scrollbar */
-.contact-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.contact-list::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 10px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  padding: 16px;
-  border: 1px solid #f3f4f6;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  background: white;
-  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
 }
 
-.contact-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border-color: #e5e7eb;
+.contact-item:last-child {
+  border-bottom: none;
 }
 
 .avatar {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  width: 40px;
+  height: 40px;
+  background-color: #dbeafe;
   color: var(--primary);
-  border-radius: 12px;
-  /* Soft square looks more modern than circle */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.2rem;
-  margin-right: 16px;
+  margin-right: 12px;
   flex-shrink: 0;
 }
 
 .contact-info {
   flex-grow: 1;
-  min-width: 0;
+  overflow: hidden;
 }
 
-/* min-width 0 prevents text overflow issues */
+/* Prevents text from pushing width out */
 .contact-info strong {
   display: block;
   font-size: 1rem;
   color: var(--text-main);
-  margin-bottom: 4px;
+}
+
+.contact-info span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.contact-info p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .actions {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .btn-icon {
-  background: #f3f4f6;
+  background: none;
   border: none;
-  font-size: 0.8rem;
-  color: #4b5563;
+  font-size: 0.85rem;
+  color: var(--primary);
   cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.btn-icon:hover {
-  background: #e5e7eb;
-  color: #111827;
+  padding: 4px 8px;
 }
 
 .btn-icon.delete {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-.btn-icon.delete:hover {
-  background: #fecaca;
+  color: var(--danger);
 }
 
 .empty-state {
   text-align: center;
   color: var(--text-light);
-  padding: 60px 20px;
+  padding: 40px;
+  background: #f9fafb;
+  border-radius: 8px;
 }
 
-/* Responsive Mobile */
+/* --- MOBILE RESPONSIVE FIX --- */
 @media (max-width: 850px) {
   body {
-    align-items: flex-start;
+    padding: 20px 15px;
+    /* Reduce outer padding */
+    display: block;
+    /* Removes flex centering issues on small screens */
   }
 
-  /* Remove vertical center on mobile */
+  .header-section {
+    margin-bottom: 20px;
+  }
+
+  .header-section h1 {
+    font-size: 1.75rem;
+  }
+
   .container {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    /* Forces vertical stack */
+    gap: 20px;
+    max-width: 100%;
   }
 
-  /* Stack them */
   .form-card {
     order: 1;
   }
 
-  /* Form on top? Or change order: 2 to put list on top */
+  /* Form stays on top */
+  .list-card {
+    order: 2;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  /* Reduce internal card padding */
+
   .list-header {
     flex-direction: column;
     align-items: stretch;
@@ -322,5 +299,25 @@ textarea {
 
   .search-input {
     max-width: 100%;
+  }
+
+  /* Ensure contact items don't break layout */
+  .contact-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .avatar {
+    margin-bottom: auto;
+  }
+
+  .contact-info {
+    min-width: 60%;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 5px;
   }
 }
