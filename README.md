@@ -43,7 +43,8 @@ A professional, full-stack web application designed to manage personal and busin
     ```
 
 ## 👤 Author
+
 **Vansh Vadhwa**
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vansh-vadhwa/)
-[![Codolio](https://img.shields.io/badge/Codolio-Profile-121212?style=for-the-badge&logo=codeforces&logoColor=white)](YOUR_CODOLIO_URL_HERE)
-* **Email:** vvad0647@gmail.com
+
+* **LinkedIn:** [View Profile](https://www.linkedin.com/in/vansh-vadhwa-2230bb248/)
+* **Codolio:** [View Coding Profile](https://codolio.com/profile/VanshVadhwa)
